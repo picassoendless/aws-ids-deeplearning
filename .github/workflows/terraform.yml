@@ -1,4 +1,4 @@
-name: Terraform AWS Deploy
+name: Terraform Deployment
 
 on:
   push:
@@ -6,24 +6,31 @@ on:
       - main
 
 jobs:
-  deploy:
+  terraform:
+    name: Terraform Apply
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.6.6  # or your preferred version
 
-    - name: Terraform Init
-      run: terraform init
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1  # Change to your region
 
-    - name: Terraform Plan
-      run: terraform plan
+      - name: Terraform Init
+        run: terraform init
 
-    - name: Terraform Apply
-      run: terraform apply -auto-approve
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Terraform Plan
+        run: terraform plan
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
