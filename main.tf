@@ -34,7 +34,7 @@ resource "aws_security_group" "instance_sg" {
 }
 
 resource "aws_instance" "sensor" {
-  ami                    = "ami-00399ec92321828f5" # Amazon Linux 2
+  ami                    = "ami-06c8f2ec674c67112" # Amazon Linux 2
   instance_type          = "t2.micro"
   subnet_id              = aws_subnet.public.id
   //security_groups        = [aws_security_group.instance_sg.name]
