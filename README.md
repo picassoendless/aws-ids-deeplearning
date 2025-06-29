@@ -3,17 +3,18 @@
 An AI-powered intrusion detection system leveraging AWS SageMaker, FastAPI, Lambda, and Terraform to classify network threats in real time.
 
 ---
+## 📈 Architecture Overview
+
+<p align="center">
+  <img src="./aws.png" alt="SentinelAI Architecture" width="800"/>
+</p>
 
 ## 📌 Overview
 
 **SentinelAI** is an end-to-end cloud-native pipeline for detecting intrusions and anomalies in network logs. The system is fully automated, serverless where possible, and leverages modern ML tooling to classify threats with high accuracy.
 
 ---
-## 📈 Architecture Overview
 
-<p align="center">
-  <img src="./aws.png" alt="SentinelAI Architecture" width="800"/>
-</p>
 
 ## 🛠️ Key Features
 
